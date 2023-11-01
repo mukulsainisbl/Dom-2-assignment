@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<style>
+    h1{
+        text-align: center;
+    }
+ #container{
+  
+         /* border: 1px solid black; */
+         display: grid;
+        grid-template-columns: repeat(3,1fr);
+        width: 20%;
+        margin: auto;
+        height: 20rem;
+        gap: 10px;
+        margin-top: 30px; 
+    
+        
+ }
+ #container > button{
+    background-color: cadetblue;
+ }
+
+
+#display{
+    margin: auto;
+    text-align: center;
+    border: 1px solid green;
+    width: 20%;
+    height: 40px;
+}
+#operators{
+    margin: auto;
+    display: flex;
+    /* border: 2px solid black; */
+    width: 20%;
+    height: 50px;
+    justify-content: space-evenly;
+    
+}
+#operators > button{
+    width: 65px;
+    gap: 10px;
+    margin-top: 5px;
+   background-color: aqua;
+}
+#equal{
+    margin: auto;
+    width: 20%;
+    height: 50px;
+    display: flex;
+    margin-top: 5px;
+    background-color: black;
+    color: white;
+    font-size: 30px;
+}
+</style>
+<body>
+    <h1>Masai Calculator</h1>
+    <h1 id="display"></h1>
+    <div id="container">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>0</button>
+    </div>
+    <div id="operators">
+        <button>+</button>
+        <button>-</button>
+        <button>*</button>
+        <button>/</button>
+    </div>
+    <button id="equal">=</button>
+
+    
+</body>
+</html>
+<script>
+    let display = document.getElementById("display")
+    let operate = document.querySelectorAll("#operators > button")
+    let equal = document.getElementById("equal")
+    equal.addEventListener('click',function(){
+        display.innerText=calculate(firstnumber,secondnumber,opt)
+    })
+
+
+let firstnumber = "";
+let secondnumber  ="";
+let opt ="";
+let isfirstnumber= true;
+
+
+    let allbutton =document.querySelectorAll("#container > button")
+    for(let i=0; i < allbutton.length; i++){
+        allbutton[i].addEventListener('click',function(){
+          if(isfirstnumber  == true){
+            firstnumber+=allbutton[i].innerText
+            display.innerText=firstnumber
+          }
+
+          else{
+            secondnumber+=allbutton[i].innerText
+            display.innerText=secondnumber
+          }
+        })
+    }
+
+for(let i=0; i < operate.length; i++){
+      operate[i].addEventListener('click' ,function(){
+        isfirstnumber = false;
+        opt+=operate[i].innerText
+        
+      })
+}
+
+function calculate(firstnumber,secondnumber,opt){
+    switch(opt){
+        case "+":
+        return Number(firstnumber) + Number(secondnumber);
+        case "-":
+        return Number(firstnumber) - Number(secondnumber);
+        case "*":
+        return Number(firstnumber) * Number(secondnumber);
+        case "/":
+        return Number(firstnumber) / Number(secondnumber);
+    }
+}
+
+
+
+
+</script>
