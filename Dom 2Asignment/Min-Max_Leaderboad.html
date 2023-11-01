@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container{
+        /* border: 2px solid black; */
+        height: 50px;
+        width: 30%;
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .container > div{
+        border: 2px solid black;
+        width: 20%;
+        height: 50px;
+        text-align: center;
+        background-color:   aquamarine;
+        margin: auto;
+    }
+    #display{
+        text-align: center;
+        border: 2px solid black;
+        width: 20%;
+        height: 80px;
+        margin: auto;
+        margin-top: 20px;
+       background-color: rgb(212, 203, 203);
+       font-size: 20px;
+    }
+    #keypad{
+        /* border: 1px solid black; */
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        width: 20%;
+        margin: auto;
+        height: 20rem;
+        gap: 10px;
+        margin-top: 30px;
+
+    }
+    #enter{
+        text-align: center;
+        margin: auto;
+        display: flex;
+        width: 20%;
+        height: 3rem;
+        background-color: aqua;
+        margin-top: 10px;
+    }
+
+</style>
+<body>
+    <div class="container">
+        <div id="min">
+            100
+        
+        </div>
+        
+
+        <div id="max">
+            400
+        </div>
+    </div>
+   <div id="display">score#</div>
+    <div id="keypad">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>0</button>
+        
+    </div>
+    <button id="enter" onclick="calculate()">Enter</button>
+</body>
+</html>
+<script>
+    let bag=""
+    let display =document.getElementById('display')
+    let allbuttons = document.querySelectorAll('#keypad > button')
+    for(let i =0; i < allbuttons.length; i++){
+        allbuttons[i].addEventListener('click',function(){
+            bag+=allbuttons[i].innerText
+            display.innerText=bag
+        })
+    }
+
+   function calculate(){
+    let min= document.getElementById('min')
+    let max = document.getElementById('max')
+    console.log(min.innerText,max.innerText)
+    if(Number(bag) < Number(min.textContent)){
+        min.textContent =bag
+    }
+    else if(Number(bag) > Number(max.textContent)){
+        max.textContent=  bag
+    }
+    
+   }    
+
+</script>
